@@ -30,6 +30,7 @@ Or to tune these thresholds with \link{tuneThreshold}; especially when you face 
 unabalanced class distributions for each binary label.
 }
 \examples{
+if (requireNamespace("rpart")) {
 d = getTaskData(yeast.task)
 # drop some labels so example runs faster
 d = d[seq(1, nrow(d), by = 20), c(1:2, 15:17)]
@@ -44,6 +45,7 @@ performance(pred, measure = list(multilabel.hamloss, multilabel.subset01, multil
 # the next call basically has the same structure for any multilabel meta wrapper
 getMultilabelBinaryPerformances(pred, measures = list(mmce, auc))
 # above works also with predictions from resample!
+}
 }
 \references{
 Tsoumakas, G., & Katakis, I. (2006)
@@ -69,8 +71,8 @@ Other wrapper:
 \code{\link{makeMultilabelNestedStackingWrapper}()},
 \code{\link{makeMultilabelStackingWrapper}()},
 \code{\link{makeOverBaggingWrapper}()},
-\code{\link{makePreprocWrapperCaret}()},
 \code{\link{makePreprocWrapper}()},
+\code{\link{makePreprocWrapperCaret}()},
 \code{\link{makeRemoveConstantFeaturesWrapper}()},
 \code{\link{makeSMOTEWrapper}()},
 \code{\link{makeTuneWrapper}()},

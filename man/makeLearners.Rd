@@ -32,7 +32,11 @@ Small helper function that can save some typing when creating mutiple learner ob
 Calls \link{makeLearner} multiple times internally.
 }
 \examples{
+\dontshow{ if (requireNamespace("MASS")) \{ }
+\dontshow{ if (requireNamespace("rpart")) \{ }
 makeLearners(c("rpart", "lda"), type = "classif", predict.type = "prob")
+\dontshow{ \} }
+\dontshow{ \} }
 }
 \seealso{
 Other learner: 
@@ -48,8 +52,8 @@ Other learner:
 \code{\link{getLearnerShortName}()},
 \code{\link{getLearnerType}()},
 \code{\link{getParamSet}()},
-\code{\link{helpLearnerParam}()},
 \code{\link{helpLearner}()},
+\code{\link{helpLearnerParam}()},
 \code{\link{makeLearner}()},
 \code{\link{removeHyperPars}()},
 \code{\link{setHyperPars}()},

@@ -8,6 +8,9 @@
 #' estimating E_(x_c)(f(x_s, x_c)). The conditional expectation of f at observation i is estimated similarly.
 #' Additionally, partial derivatives of the marginalized function w.r.t. the features can be computed.
 #'
+#' This function requires the `mmpf` package to be installed. It is currently not on CRAN, but can
+#' be installed through GitHub using `devtools::install_github('zmjones/mmpf/pkg')`.
+#'
 #' @family partial_dependence
 #' @family generate_plot_data
 #' @aliases PartialDependenceData
@@ -65,7 +68,7 @@
 #'   The second element of `n` gives the size of the sample to be drawn without replacement from the `input` data.
 #'   Setting `n[2]` less than the number of rows in the `input` will decrease computation time.
 #'   The default for `n[1]` is 10, and the default for `n[2]` is the number of rows in the `input`.
-#' @param ... additional arguments to be passed to [mmpf::marginalPrediction].
+#' @param ... additional arguments to be passed to `mmpf`'s `marginalPrediction`.
 #' @return [PartialDependenceData]. A named list, which contains the partial dependence,
 #'   input data, target, features, task description, and other arguments controlling the type of
 #'   partial dependences made.
@@ -93,6 +96,8 @@
 #'
 #' Friedman, Jerome. \dQuote{Greedy Function Approximation: A Gradient Boosting Machine.} The Annals of Statistics. Vol. 29. No. 5 (2001): 1189-1232.
 #' @examples
+#' \dontshow{ if (requireNamespace("rpart")) \{ }
+#' \dontshow{ pname <- "mmpf" ; if (requireNamespace(pname)) \{ }
 #' lrn = makeLearner("regr.svm")
 #' fit = train(lrn, bh.task)
 #' pd = generatePartialDependenceData(fit, bh.task, "lstat")
@@ -102,6 +107,8 @@
 #' fit = train(lrn, iris.task)
 #' pd = generatePartialDependenceData(fit, iris.task, "Petal.Width")
 #' plotPartialDependence(pd, data = getTaskData(iris.task))
+#' \dontshow{ \} }
+#' \dontshow{ \} }
 #' @export
 generatePartialDependenceData = function(obj, input, features = NULL,
   interaction = FALSE, derivative = FALSE, individual = FALSE,
@@ -109,6 +116,7 @@ generatePartialDependenceData = function(obj, input, features = NULL,
   uniform = TRUE, n = c(10, NA), ...) {
 
   requirePackages("mmpf")
+  pname = "mmpf"
   assertClass(obj, "WrappedModel")
   if (obj$learner$predict.type == "se" & individual) {
     stop("individual = TRUE not compatabile with predict.type = 'se'!")
@@ -192,7 +200,7 @@ generatePartialDependenceData = function(obj, input, features = NULL,
   if (!derivative) {
     args = list(model = obj, data = data, uniform = uniform, aggregate.fun = fun,
       predict.fun = getPrediction, n = n, ...)
-    out = parallelMap(mmpf::marginalPrediction,
+    out = parallelMap(asNamespace(pname)$marginalPrediction,
       vars = if (interaction) list(features) else as.list(features), more.args = args)
     if (length(target) == 1L) {
       out = lapply(out, function(x) {
@@ -209,7 +217,7 @@ generatePartialDependenceData = function(obj, input, features = NULL,
       })
     }
   } else {
-    points = lapply(features, function(x) mmpf::uniformGrid(data[[x]], n[1]))
+    points = lapply(features, function(x) asNamespace(pname)$uniformGrid(data[[x]], n[1]))
     names(points) = features
     args = list(obj = obj, data = data, uniform = uniform, fun = fun,
       n = n, points = points, target = target, individual = individual, ...)
@@ -341,10 +349,11 @@ doDerivativeMarginalPrediction = function(x, z = sample(seq_len(nrow(data)), n[2
 # vector or matrix from marginalPrediction
 numDerivWrapper = function(points, vars, individual, target, ...) {
   args = list(...)
+  pname = "mmpf"
   args$points = list(points)
   names(args$points) = vars
   args$vars = vars
-  out = do.call(mmpf::marginalPrediction, args)
+  out = do.call(asNamespace(pname)$marginalPrediction, args)
   as.matrix(out[, which(names(out) != vars), with = FALSE])
 }
 
@@ -585,7 +594,8 @@ plotPartialDependence = function(obj, geom = "line", facet = NULL, facet.wrap.nr
       }
 
       if (length(fun.facet) > 0L && "Function" %in% fun.facet) {
-        data = mmpf::cartesianExpand(data, data.frame("Function" = unique(obj$data$Function)))
+        pname = "mmpf"
+        data = asNamespace(pname)$cartesianExpand(data, data.frame("Function" = unique(obj$data$Function)))
       }
     }
 

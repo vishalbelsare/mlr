@@ -32,11 +32,13 @@ If a named (hyper)parameter can't be found for the given learner, the 3
 closest (hyper)parameter names will be output in case the user mistyped.
 }
 \examples{
+\dontshow{ if (requireNamespace("kernlab")) \{ }
 cl1 = makeLearner("classif.ksvm", sigma = 1)
 cl2 = setHyperPars(cl1, sigma = 10, par.vals = list(C = 2))
 print(cl1)
 # note the now set and altered hyperparameters:
 print(cl2)
+\dontshow{ \} }
 }
 \seealso{
 Other learner: 
@@ -52,10 +54,10 @@ Other learner:
 \code{\link{getLearnerShortName}()},
 \code{\link{getLearnerType}()},
 \code{\link{getParamSet}()},
-\code{\link{helpLearnerParam}()},
 \code{\link{helpLearner}()},
-\code{\link{makeLearners}()},
+\code{\link{helpLearnerParam}()},
 \code{\link{makeLearner}()},
+\code{\link{makeLearners}()},
 \code{\link{removeHyperPars}()},
 \code{\link{setId}()},
 \code{\link{setLearnerId}()},

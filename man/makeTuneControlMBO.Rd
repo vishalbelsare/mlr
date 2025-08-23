@@ -60,7 +60,7 @@ Resume calculation from previous run using \link[mlrMBO:mboContinue]{mlrMBO::mbo
 Requires \dQuote{save.file.path} to be set.
 Note that the \link[ParamHelpers:OptPath]{ParamHelpers::OptPath} in the \link[mlrMBO:OptResult]{mlrMBO::OptResult}
 will only include the evaluations after the continuation.
-The complete \link{OptPath} will be found in the slot \verb{$mbo.result$opt.path}.}
+The complete \link[ParamHelpers:OptPath]{ParamHelpers::OptPath} will be found in the slot \verb{$mbo.result$opt.path}.}
 
 \item{log.fun}{(\code{function} | \code{character(1)})\cr
 Function used for logging. If set to \dQuote{default} (the default), the evaluated design points, the resulting
@@ -106,8 +106,8 @@ Other tune:
 \code{\link{getNestedTuneResultsX}()},
 \code{\link{getResamplingIndices}()},
 \code{\link{getTuneResult}()},
-\code{\link{makeModelMultiplexerParamSet}()},
 \code{\link{makeModelMultiplexer}()},
+\code{\link{makeModelMultiplexerParamSet}()},
 \code{\link{makeTuneControlCMAES}()},
 \code{\link{makeTuneControlDesign}()},
 \code{\link{makeTuneControlGenSA}()},

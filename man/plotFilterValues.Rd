@@ -45,8 +45,10 @@ ggplot2 plot object.
 Plot filter values using ggplot2.
 }
 \examples{
+\dontshow{ if (requireNamespace("FSelectorRcpp")) \{ }
 fv = generateFilterValuesData(iris.task, method = "variance")
 plotFilterValues(fv)
+\dontshow{ \} }
 }
 \seealso{
 Other filter: 
@@ -55,9 +57,9 @@ Other filter:
 \code{\link{getFilteredFeatures}()},
 \code{\link{listFilterEnsembleMethods}()},
 \code{\link{listFilterMethods}()},
+\code{\link{makeFilter}()},
 \code{\link{makeFilterEnsemble}()},
-\code{\link{makeFilterWrapper}()},
-\code{\link{makeFilter}()}
+\code{\link{makeFilterWrapper}()}
 
 Other generate_plot_data: 
 \code{\link{generateCalibrationData}()},

@@ -12,7 +12,7 @@ The learner.
 If you pass a string the learner will be created via \link{makeLearner}.}
 }
 \value{
-\link{ParamSet}.
+\link[ParamHelpers:makeParamSet]{ParamSet}.
 }
 \description{
 Alias for \link{getParamSet}.
@@ -30,10 +30,10 @@ Other learner:
 \code{\link{getLearnerShortName}()},
 \code{\link{getLearnerType}()},
 \code{\link{getParamSet}()},
-\code{\link{helpLearnerParam}()},
 \code{\link{helpLearner}()},
-\code{\link{makeLearners}()},
+\code{\link{helpLearnerParam}()},
 \code{\link{makeLearner}()},
+\code{\link{makeLearners}()},
 \code{\link{removeHyperPars}()},
 \code{\link{setHyperPars}()},
 \code{\link{setId}()},

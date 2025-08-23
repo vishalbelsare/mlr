@@ -22,6 +22,7 @@ with \code{resample(..., extract = getTuneResult)} or \code{resample(..., extrac
 the resampling indices used for the respective method.
 }
 \examples{
+\dontshow{ if (requireNamespace("rpart")) \{ }
 task = makeClassifTask(data = iris, target = "Species")
 lrn = makeLearner("classif.rpart")
 # stupid mini grid
@@ -38,6 +39,7 @@ lrn = makeTuneWrapper(lrn, resampling = inner, par.set = ps, control = ctrl)
 r = resample(lrn, task, outer, extract = getTuneResult)
 # get tuning indices
 getResamplingIndices(r, inner = TRUE)
+\dontshow{ \} }
 }
 \seealso{
 Other tune: 
@@ -45,8 +47,8 @@ Other tune:
 \code{\link{getNestedTuneResultsOptPathDf}()},
 \code{\link{getNestedTuneResultsX}()},
 \code{\link{getTuneResult}()},
-\code{\link{makeModelMultiplexerParamSet}()},
 \code{\link{makeModelMultiplexer}()},
+\code{\link{makeModelMultiplexerParamSet}()},
 \code{\link{makeTuneControlCMAES}()},
 \code{\link{makeTuneControlDesign}()},
 \code{\link{makeTuneControlGenSA}()},

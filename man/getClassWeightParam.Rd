@@ -17,7 +17,7 @@ ensemble have a class weight param. Specify the learner from which the class wei
 be extracted.}
 }
 \value{
-\link{numeric} \link{LearnerParam}:
+\link{numeric} \link[ParamHelpers:LearnerParam]{LearnerParam}:
 A numeric parameter object, containing the class weight parameter of the given learner.
 }
 \description{
@@ -36,10 +36,10 @@ Other learner:
 \code{\link{getLearnerShortName}()},
 \code{\link{getLearnerType}()},
 \code{\link{getParamSet}()},
-\code{\link{helpLearnerParam}()},
 \code{\link{helpLearner}()},
-\code{\link{makeLearners}()},
+\code{\link{helpLearnerParam}()},
 \code{\link{makeLearner}()},
+\code{\link{makeLearners}()},
 \code{\link{removeHyperPars}()},
 \code{\link{setHyperPars}()},
 \code{\link{setId}()},

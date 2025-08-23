@@ -58,6 +58,7 @@ After training, the optimal hyperparameters (and other related information) can 
 \link{getTuneResult}.
 }
 \examples{
+\dontshow{ if (requireNamespace("rpart")) \{ }
 \donttest{
 task = makeClassifTask(data = iris, target = "Species")
 lrn = makeLearner("classif.rpart")
@@ -79,6 +80,7 @@ print(r$extract)
 getNestedTuneResultsOptPathDf(r)
 getNestedTuneResultsX(r)
 }
+\dontshow{ \} }
 }
 \seealso{
 Other tune: 
@@ -87,8 +89,8 @@ Other tune:
 \code{\link{getNestedTuneResultsX}()},
 \code{\link{getResamplingIndices}()},
 \code{\link{getTuneResult}()},
-\code{\link{makeModelMultiplexerParamSet}()},
 \code{\link{makeModelMultiplexer}()},
+\code{\link{makeModelMultiplexerParamSet}()},
 \code{\link{makeTuneControlCMAES}()},
 \code{\link{makeTuneControlDesign}()},
 \code{\link{makeTuneControlGenSA}()},
@@ -118,8 +120,8 @@ Other wrapper:
 \code{\link{makeMultilabelNestedStackingWrapper}()},
 \code{\link{makeMultilabelStackingWrapper}()},
 \code{\link{makeOverBaggingWrapper}()},
-\code{\link{makePreprocWrapperCaret}()},
 \code{\link{makePreprocWrapper}()},
+\code{\link{makePreprocWrapperCaret}()},
 \code{\link{makeRemoveConstantFeaturesWrapper}()},
 \code{\link{makeSMOTEWrapper}()},
 \code{\link{makeUndersampleWrapper}()},

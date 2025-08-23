@@ -65,6 +65,7 @@ available ensemble methods.
 }
 
 \examples{
+\dontshow{ if (requireNamespace("FSelectorRcpp")) \{ }
 # two simple filter methods
 fval = generateFilterValuesData(iris.task,
   method = c("FSelectorRcpp_gain.ratio", "FSelectorRcpp_information.gain"))
@@ -72,6 +73,7 @@ fval = generateFilterValuesData(iris.task,
 fval = generateFilterValuesData(iris.task,
   method = list("E-mean", c("FSelectorRcpp_gain.ratio",
     "FSelectorRcpp_information.gain")))
+\dontshow{ \} }
 }
 \seealso{
 Other generate_plot_data: 
@@ -88,9 +90,9 @@ Other filter:
 \code{\link{getFilteredFeatures}()},
 \code{\link{listFilterEnsembleMethods}()},
 \code{\link{listFilterMethods}()},
+\code{\link{makeFilter}()},
 \code{\link{makeFilterEnsemble}()},
 \code{\link{makeFilterWrapper}()},
-\code{\link{makeFilter}()},
 \code{\link{plotFilterValues}()}
 }
 \concept{filter}
